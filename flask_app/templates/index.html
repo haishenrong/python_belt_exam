@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+        crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+        rel="stylesheet"
+    />
+    <title>Document</title>
+</head>
+<body>
+    <div class="container row">
+        <div class='col'>
+            <h1 style="text-align:center;"> Register</h1>
+                {% with messages = get_flashed_messages() %}    
+                    {% if messages %}                            
+                        {% for message in messages %}  
+                            {% if 'Invalid' not in message%}         
+                            <p class="text-danger">{{message}}</p>      
+                            {% endif %}            
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            <form action="/create_user" method="POST">
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name">
+                </div>
+                <div class="form-group">
+                    <label for="email"> Email:</label>
+                    <input type="text" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="cPassword">Confirm Password:</label>
+                    <input type="password" name="cPassword">
+                </div>
+                <input type="submit" value="Register">
+            </form> 
+        </div>
+        <div class="col">
+            <h1 style="text-align:center;"> Login </h1>
+            {% with messages = get_flashed_messages() %}    
+                {% if messages %}                            
+                    {% for message in messages %}  
+                        {% if 'Invalid' in message%}         
+                            <p class="text-danger">{{message}}</p>      
+                        {% endif %}            
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="email"> Email:</label>
+                    <input type="text" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password">
+                </div>
+                <input type="submit" value="Login">
+            </form> 
+        </div>
+    </div>
+</body>
+</html>
